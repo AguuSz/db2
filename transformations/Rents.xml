@@ -1,0 +1,66 @@
+<Schema name="New Schema1">
+  <Cube name="Rents" visible="true" cache="true" enabled="true">
+    <Table name="dw_rentsfact">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="date" highCardinality="false" name="Tiempo">
+      <Hierarchy name="Por Fecha" visible="true" hasAll="true">
+        <Table name="dw_timelookup">
+        </Table>
+        <Level name="Temporada" visible="true" column="season" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Semestre" visible="true" column="semester" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Mensual" visible="true" column="month" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Semanal" visible="true" column="week" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Diario" visible="true" column="day_of_week" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="client_id" highCardinality="false" name="Cliente">
+      <Hierarchy name="Por cliente" visible="true" hasAll="true">
+        <Table name="dw_clientlookup">
+        </Table>
+        <Level name="Nombre" visible="true" column="name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="host_id" highCardinality="false" name="Host">
+      <Hierarchy name="Por host" visible="true" hasAll="true">
+        <Table name="dw_hostlookup">
+        </Table>
+        <Level name="Nombre" visible="true" column="name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="neighbourhood_id" highCardinality="false" name="Barrio">
+      <Hierarchy name="Por barrio" visible="true" hasAll="true">
+        <Table name="dw_neighbourhoodlookup">
+        </Table>
+        <Level name="Nombre" visible="true" column="neighbourhood" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="apartment_id" highCardinality="false" name="Departamento">
+      <Hierarchy name="Por departamento" visible="true" hasAll="true">
+        <Table name="dw_apartmentlookup">
+        </Table>
+        <Level name="Por nombre" visible="true" column="name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Por disponibilidad 365" visible="true" column="availability_365" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Por noches minimas" visible="true" column="minimum_nights" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Por tipo de habitacion" visible="true" column="room_type" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Billed amount" column="billed_amount" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Price average" column="price_average" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Days average" column="days_average" aggregator="avg" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

@@ -1,0 +1,16 @@
+version: "3"
+services:
+  pentahoserver:
+    image: magm3333/pentahoserver
+    ports:
+      - 8080:8080
+
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=gorogil123
+      - MYSQL_DATABASE=airbnb
